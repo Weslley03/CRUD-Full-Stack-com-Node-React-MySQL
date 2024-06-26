@@ -1,4 +1,4 @@
-import { db } from "../db"
+import { db } from "../db.js"
 
 export function getUsers(req, res){
     const queryCommand = 'SELECT * FROM crud001.users;'
