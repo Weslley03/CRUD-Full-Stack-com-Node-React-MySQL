@@ -52,7 +52,7 @@ function Grid({ users }) {
           <Tr>
             <Th>Nome</Th>
             <Th>Email</Th>
-            <Th onlyWeb>Fone</Th>
+            <Th $onlyWeb>Fone</Th>
             <Th></Th>
             <Th></Th>
           </Tr>
@@ -62,14 +62,13 @@ function Grid({ users }) {
             <Tr key={i}>
               <Td width="30%"> {user.nameUsers} </Td>
               <Td width="30%"> {user.emailUsers} </Td>
-              <Td width="20%" onlyWeb>
-                {" "}
-                {user.fone}{" "}
+              <Td width="20%" $onlyWeb>
+                {user.fone}
               </Td>
-              <Td alignCenter width="5%">
+              <Td width="5%">
                 <FaEdit />
               </Td>
-              <Td alignCenter width="5%">
+              <Td width="5%">
                 <FaTrash />
               </Td>
             </Tr>
