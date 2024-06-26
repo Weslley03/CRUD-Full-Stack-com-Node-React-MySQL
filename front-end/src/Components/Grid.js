@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-//import axios from 'axios'
+import axios from 'axios'
 import { FaTrash, FaEdit } from "react-icons/fa";
-//import { toast } from "react-toastify";
+import { toast } from "react-toastify";
 
 const Table = styled.table`
   width: 100%;
@@ -40,7 +40,22 @@ export const Td = styled.td`
 const Thead = styled.thead``;
 const Tbody = styled.tbody``;
 
-function Grid({ users }) {
+function Grid({ users, setUsers, setOnEdit }) {
+
+  async function handleDelete(id){
+    await axios
+    .delete(`http://localhost:8800/${id}`)
+    .then(({data}) => {
+      const newArray = users.filter((user) => user.id !== id);
+      setUsers(newArray)
+      toast.success(data)
+    })
+    .catch(({data}) => toast.error(data))
+  }
+
+  async function handleUpdate(user){
+    setOnEdit(user);
+  }
 
     if(!users){
         return <p>carregando...</p>
@@ -66,10 +81,10 @@ function Grid({ users }) {
                 {user.fone}
               </Td>
               <Td width="5%">
-                <FaEdit />
+                <FaEdit onClick={() => handleUpdate(user)}/>
               </Td>
               <Td width="5%">
-                <FaTrash />
+                <FaTrash onClick={() => handleDelete(user.id)}/>
               </Td>
             </Tr>
           ))}

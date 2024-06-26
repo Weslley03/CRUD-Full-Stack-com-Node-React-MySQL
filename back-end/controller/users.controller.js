@@ -28,7 +28,7 @@ export function addUser(req, res){
 }
 
 export function updateUser(req, res){
-    const queryCommand = 'UPDATE `crud001`.`users` SET `nameUsers` = ?, `emailUsers` = ?, `fone` = ?, `data_nasc` = ? WHERE `id` = ?';
+    const queryCommand = 'UPDATE `crud001`.`users` SET `nameUsers` = ?, `emailUsers` = ?, `fone` = ?, `date_nasc` = ? WHERE `id` = ?';
 
     const values = [
         req.body.nameUsers,
