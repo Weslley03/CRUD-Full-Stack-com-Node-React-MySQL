@@ -32,6 +32,10 @@ export const Td = styled.td`
   text-align: ${(props) => (props.alignCenter ? "center" : "start")};
   width: ${(props) => (props.width ? props.width : "auto")};
 
+  .botoes{
+    cursor: pointer;
+  }
+
   @media (max-width: 500px) {
     ${(props) => props.onlyWeb && "display: none"}
   }
@@ -83,10 +87,10 @@ function Grid({ users, setUsers, setOnEdit }) {
                 {user.fone}
               </Td>
               <Td width="5%">
-                <FaEdit onClick={() => handleUpdate(user)}/>
+                <FaEdit className="botoes" onClick={() => handleUpdate(user)}/>
               </Td>
               <Td width="5%">
-                <FaTrash onClick={() => handleDelete(user.idUsers)}/>
+                <FaTrash className="botoes" onClick={() => handleDelete(user.idUsers)}/>
               </Td>
             </Tr>
           ))}
