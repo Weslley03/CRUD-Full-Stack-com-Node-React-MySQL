@@ -11,13 +11,13 @@ export function getUsers(req, res){
 }
 
 export function addUser(req, res){
-    const queryCommand = 'INSERT INTO `crud001`.`users` (`nameUsers`, `emailUsers`, `fone`,  `date_nasc`) VALUES (?)';
+    const queryCommand = 'INSERT INTO crud001.users (`nameUsers`, `emailUsers`, `fone`,  `date_nasc`) VALUES (?)';
 
     const values = [
         req.body.nameUsers,
         req.body.emailUsers,
         req.body.fone,
-        req.body.data_nas
+        req.body.date_nasc
     ]
 
     db.query(queryCommand, [values], (err) => {
@@ -28,15 +28,15 @@ export function addUser(req, res){
 }
 
 export function updateUser(req, res){
-    const queryCommand = 'UPDATE `crud001`.`users` SET `nameUsers` = ?, `emailUsers` = ?, `fone` = ?, `date_nasc` = ? WHERE `id` = ?';
+    const queryCommand = 'UPDATE crud001.users SET `nameUsers` = ?, `emailUsers` = ?, `fone` = ?, `date_nasc` = ? WHERE `idUsers` = ?';
 
     const values = [
         req.body.nameUsers,
         req.body.emailUsers,
-        req.body.fone,
-        req.body.data_nas
+        req.body.fone,  
+        req.body.date_nasc,
     ]
-
+    console.log(values, req.params)
     db.query(queryCommand, [...values, req.params.id], (err) => {
         if(err) return res.json(err)
 
@@ -45,7 +45,7 @@ export function updateUser(req, res){
 }
 
 export function deleteUser(req, res){
-    const queryCommand = 'DELETE FROM users WHERE `id` = ?';
+    const queryCommand = 'DELETE FROM users WHERE `idUsers` = ?';
 
     db.query(queryCommand, [req.params.id], (err) => {
         if(err) return res.json(err)

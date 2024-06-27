@@ -47,7 +47,7 @@ function Form({ getUsers, onEdit, setOnEdit }){
         if(onEdit) {
             const user = ref.current;
 
-            user.nameUsers.value = onEdit.nameUser
+            user.nameUsers.value = onEdit.nameUsers
             user.emailUsers.value = onEdit.emailUsers
             user.fone.value = onEdit.fone
             user.date_nasc.value = onEdit.date_nasc
@@ -70,15 +70,26 @@ function Form({ getUsers, onEdit, setOnEdit }){
          
         if(onEdit){
             await axios
-            .put(`http://localhost:8800/${onEdit.id}`, {
-                nome: user.nameUsers.value,
-                email: user.emailUsers.value,
+            .put(`http://localhost:8800/update/${onEdit.idUsers}`, {
+                nameUsers: user.nameUsers.value,
+                emailUsers: user.emailUsers.value,
                 fone: user.fone.value,
-                data_nascimento: user.date_nasc.value,
+                date_nasc: user.date_nasc.value
             })
             .then(({data}) => toast.success(data))
             .catch(({data}) => toast.error(data))
-        }  
+            console.log(onEdit.id)
+        } else{
+            await axios
+            .post(`http://localhost:8800/add`, {
+                nameUsers: user.nameUsers.value,
+                emailUsers: user.emailUsers.value,
+                fone: user.fone.value,
+                date_nasc: user.date_nasc.value
+            })
+            .then(({data}) => toast.success(data))
+            .catch(({data}) => toast.error(data))
+        }
 
         user.nameUsers.value = "";
         user.emailUsers.value = "";
@@ -108,7 +119,7 @@ function Form({ getUsers, onEdit, setOnEdit }){
 
             <InputArea>
                 <Label>Data de Nascimento</Label>
-                <Input name='data_nasc' type="date"/>
+                <Input name='date_nasc' type="date"/>
             </InputArea>
 
             <Button type='submit'>SALVAR</Button>

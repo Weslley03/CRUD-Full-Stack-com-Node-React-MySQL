@@ -42,19 +42,21 @@ const Tbody = styled.tbody``;
 
 function Grid({ users, setUsers, setOnEdit }) {
 
+  function handleUpdate(user){
+    return setOnEdit(user);
+  }
+
   async function handleDelete(id){
     await axios
-    .delete(`http://localhost:8800/${id}`)
+    .delete(`http://localhost:8800/delete/${id}`)
     .then(({data}) => {
-      const newArray = users.filter((user) => user.id !== id);
+      const newArray = users.filter((user) => user.idUsers !== id);
       setUsers(newArray)
       toast.success(data)
     })
     .catch(({data}) => toast.error(data))
-  }
 
-  async function handleUpdate(user){
-    setOnEdit(user);
+    setOnEdit(null);
   }
 
     if(!users){
@@ -84,7 +86,7 @@ function Grid({ users, setUsers, setOnEdit }) {
                 <FaEdit onClick={() => handleUpdate(user)}/>
               </Td>
               <Td width="5%">
-                <FaTrash onClick={() => handleDelete(user.id)}/>
+                <FaTrash onClick={() => handleDelete(user.idUsers)}/>
               </Td>
             </Tr>
           ))}

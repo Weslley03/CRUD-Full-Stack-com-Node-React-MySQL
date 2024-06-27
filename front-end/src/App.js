@@ -42,9 +42,9 @@ function App() {
     <Container>
       <Title>USUÁRIOS</Title>
       <Form onEdit={onEdit} setOnEdit={setOnEdit} getUsers={getUsers}/>
-      <Grid users={users} setUsers={setUsers} setOnEdit={setOnEdit} />
+      <Grid setOnEdit={setOnEdit} users={users} setUsers={setUsers} />
     </Container> 
-    <ToastContainer autoClose={3000} position='toast.POSITION.BOTTOM_LEFT'/>
+    <ToastContainer autoClose={3000} position="bottom-left"/>
       <Global />
     </>
   )
